@@ -1,0 +1,48 @@
+﻿使用说明
+
+1.WorkDir:先把要检查的excel文本文档放入WorkDir ,确保里面只有一个excel文件。正确配置excel的标题，确保表头有检查和备注的字段。
+
+2.config.py: 进行excel自动化相关的配置
+	
+	-----命名相关------
+	WORKER -- 检查者姓名
+	SUFFIX -- excel文件的后缀名
+	WORK_PATH -- 工作文件夹的目录
+	TRS_USER:登陆hy_base的账号
+	TRS_PWD:登陆的密码
+
+
+	-----excel行过滤------
+	HEAD_1 对excel表头进行过滤的字段
+	HEAD_2 对excel表头进行过滤的字段 同时含有 这两个字段即认为是表头，不处理改行。
+	CHANNAL_PATH_F 对普通进行过滤的字段
+	DOCCHANNEL_F 对普通进行过滤的字段  当普通行的字段等于这两个字段中的一个，即不处理这个普通行
+
+	-----excel字段提取，数值均为excel中的数值-1-----
+	IR_SITENAME -- 网站名的位置 A 对应 0
+	CHANNAL_PATH -- 栏目名的位置
+	DOCCHANNEL -- 栏目别名的位置
+	URL -- 网站网址的位置 
+	STATE -- 填入检查错误的位置
+	STATE_INFO -- 填入错误详情的位置
+
+3.开始检查.bat :点击后即可开始检查数据。黑窗口未后端的服务器，不可以关闭。确保chrome右上角的 XFOremove插件已经安装。
+
+4.检查完成，取出WorkDir中的excel文件。根据配置的信息，已经自动生成了excel的文件名后面的检查者和检查时间。
+
+5.注意不要改动文件夹中除 WorkDir里其它的文件，不要更改检查浏览器的配置，不要移除浏览器的插件。
+
+6.文件说明 
+		文件 -----
+		./开始检查.bat 程序的入口，点击即开始检查
+		./index.html 为界面的首页，
+		./server.py为后端的服务程序
+		./test.py测试后端爬虫脚本和excel操作脚本是否正常
+		./config.py测试的配置文件
+
+		文件夹 -----
+		./WorkDir 工作目录，把要检查的excel文件放入即可，确保文件夹内只有一个excel文件
+		./docs/  程序相关文档  
+		./page_utils/  页面相关的脚本和文件  
+		./python_utils/  python的脚本程序
+		./tools/ 内嵌的程序包括修改后的chrome，用于验证码识别的tesseract-ocr工具， python的解释器

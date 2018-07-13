@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "XFORemove",
+    "version": "1.0",
+    "description": "Removes X-Frame-Options",
+
+    
+    "background" : {
+        "scripts" : ["xforemove.js"]
+    },
+    "permissions" : [
+        "<all_urls>",
+        "webRequest",
+        "webRequestBlocking"
+    ]
+}

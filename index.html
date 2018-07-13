@@ -1,0 +1,1404 @@
+<!-- Author: lim
+Email: 940711277@qq.com
+Date:  2018-06-10 14:23:37 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>检查工具.v9</title>
+	<link rel="icon" href="page_utils/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="page_utils/favicon.ico" type="image/x-icon" />
+	<style type="text/css" id='frame_css'>
+	    html,body,ul,li,iframe,p{
+	    	width:100%;
+	    	height:100%;
+	    	border:0;
+	    	margin:0;
+	    	padding:0;
+	    }
+	    body{
+	    	overflow: hidden;
+	    	background:	#B0B0B0;
+	    }
+	    input,select{
+		    outline:none;	    	
+	    	border: 0;
+	    	margin:0;
+	    	padding:0;
+	    }
+		.head{
+			margin-top: 0.4%;
+			border-radius: 10px;
+			width: 99.5%;
+			margin-left: 0.25%;
+			margin-right: 0.25%;
+			height: 6.6%;
+			background:#68b4ff;
+		}
+		#history{
+			position: relative;
+			top:10%;
+			margin-left:2%;
+			width: 18%;
+			height: 80%;
+			float:left;
+		}
+		#history input{
+			border-radius:8px;
+			width: 100%;
+			height: 100%;
+			display: block;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 20px;
+			color:black;
+			font-family: "KaiTi";
+		}
+		#history input:hover{
+			font-size: 21px;
+		}
+		#page{
+			margin-right:2%;
+			width: 18%;
+			height: 100%;
+			float:right;
+		}			
+		#page_num{
+			font-family: "KaiTi";
+			overflow: hidden;
+			position: relative;
+			top:20%;
+			width: 100%;
+			height: 60%;
+		}
+		#prev{
+			font-family: "KaiTi";
+			font-size: 13px;
+			border-radius:5px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 200%;
+			float: left;
+			width: 30%;
+			height: 100%;
+			background: seashell;
+		}
+		#prev:hover{
+			font-size: 15px;
+		}
+		#number{
+			display: none;
+			line-height: 35px;
+			border-radius:5px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 200%;
+			margin-left: 10%;
+			float:left;
+			width: 20%;
+			height: 100%;
+			background:mistyrose;
+		}
+		#number:hover{
+			background:#FF99CC;
+			border-radius:15px;
+		}
+		#next{
+			font-family: "KaiTi";
+			font-size: 13px;
+			border-radius:5px;
+			font-weight: bold;
+			text-align: center;	
+			line-height: 200%;	
+			float: right;
+			width: 30%;
+			height: 100%;
+			background: seashell;
+		}
+		#next:hover{
+			font-size: 15px;
+		}
+		#close_details,#one_wrong_back,#total_wrong_back{
+			width: 100%;
+			height: 100%;
+			display:none;
+		}
+		#one_wrong_back,#total_wrong_back{
+			display: none;
+		}
+		#close_details input,#one_wrong_back input,#total_wrong_back input{
+			font-family: "KaiTi";
+			border-radius:8px;
+			position: relative;
+			top:10%;
+			color: black;
+			display: block;
+			width: 100%;
+			height: 80%;
+			font-size: 20px;
+		}
+		#close_details input:hover{
+			font-size: 21px;
+		}
+		#one_wrong_back input:hover{
+			font-size: 21px;
+		}
+		#total_wrong_back input:hover{
+			font-size: 21px;
+		}
+		.input_con{
+			margin-left: 25%;
+			margin-right: 25%;
+			height:100%;
+			width:50%;
+		}
+		.input{
+			font-family: "KaiTi";
+			border-radius:8px;
+			font-size:18px;
+			text-indent:20px; 
+			position: relative;
+			color: black;
+			top:10%;
+			height: 80%;
+			width: 80%;
+		    float:left;
+		}
+		.input_ensure{
+			font-family: "KaiTi";
+			color: black;
+			font-size:23px;
+			border-radius:8px;
+			background:mintcream;
+			position: relative;
+			top:10%;
+			height: 80%;
+			width: 15%;
+		    float:right;
+		}
+		.input_ensure:hover{
+			font-size: 25px;
+			background: #ff4500;
+		}
+		.left{
+			position:relative;
+			width:60%;
+			height:93%;
+			float:left;
+		}
+		.right{
+			position:relative;
+			width: 40%;height:93%;
+		    float: left;
+		}
+		#site_url{
+			text-align: center;
+			font-family: 'KaiTi'
+			background: white;
+			width: 50%;
+			margin-left:25%;
+			height: 2%;
+			line-height:12px;
+			font-size: 1px;
+			color: black;
+		}
+		#site_url:hover{
+			color: red;
+		}
+		.if_1{
+			border-radius: 8px;
+			width:100%;
+			height:98%;
+		}
+		#right_info{
+			border-radius: 12px;
+			background:#D8D8D8;
+			width:94%;
+			height: 96%;
+			padding: 2%;
+			margin:1%;
+			display: none;
+			overflow: auto;
+		}
+		#right_info p{
+			text-align: center;
+			/*font-family: "KaiTi";*/
+		}	
+		#ul {
+			background:	#B0B0B0;
+			padding-top: 1%;
+			width:100%;
+			height: 99%;
+			overflow: hidden;
+		}
+		#ul li{
+			border-radius: 10px;
+			height:10%;
+			width: 97%;
+			margin-left: 1%;
+			margin-right: 1.5%;
+		}
+		#ul li:nth-child(odd){
+			background:#E0E0E0;
+		}
+		#num{
+			position: relative;
+			right:1%;
+			float: right;
+			height: 60%;
+			width: 3%;
+		}
+		#num p{
+			border-radius: 4px;
+			background:	#68b4ff;
+			position: relative;
+			left:15%;
+			top:60%;
+			width: 100%;
+			height: 50%;
+			/*font-family: "KaiTi";*/
+			text-align: center;
+			line-height: 20px;
+			color:black;
+			font-size: 14px;
+		}
+
+
+		#DOCTITLE{
+			position: relative;
+			top:30%;
+			float: left;
+			margin-left: 1%;
+			height: 59%;
+			width: 53%;
+		}	
+		#DOCTITLE p{
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			/*font-family: "KaiTi";*/
+			/*vertical-align:text-bottom;*/
+			line-height:18px;
+			text-align: center;
+			color: black;
+			font-size: 15px;
+		}		
+		#DOCTITLE p:hover{
+			font-size: 16px;
+		}
+		#DOCPUBTIME{
+			position: relative;
+			top:20%;
+			float: left;
+			margin-left:1%;
+			height: 60%;
+			width: 18%;
+		}
+		#DOCPUBTIME p{
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			/*font-family: "KaiTi";*/
+			vertical-align:middle;
+			text-align: center;
+			color: black;
+			font-size: 16px;
+		}			
+		#IR_SRCNAME{
+			position: relative;
+			top:20%;
+			float: left;
+			height: 60%;
+			width: 22%;
+		}	
+		#IR_SRCNAME p{
+			position: relative;
+			top:20%;
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			/*font-family: "KaiTi";*/
+			/*vertical-align:text-bottom;*/
+			text-align: center;
+			color: black;
+			font-size: 15px;
+		}		
+		#PUBURL{
+			display: none;
+			float: right;
+			height: 30%;
+			width: 97%;
+		}	
+		#PUBURL p{
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			font-family: "Microsoft Yahei";
+			text-align: center;
+			vertical-align: middle; 
+			color: black;
+			font-size: 3px;
+			border-bottom: 2px solid grey;
+		}
+		#IR_CONTENT{
+			display: none;
+		}	
+		#DOCAUTHOR{
+			display: none;
+		}		
+	</style>
+	<style type="text/css" id='open_show'>
+		.left_first ,.right_first{
+			overflow: hidden;
+			z-index: 100;
+			width: 100%;
+			height: 100%;
+		}
+		.left_first_con{
+			border-radius:10px;
+			width: 98%;
+			height: 98%;
+			margin:1%;
+			position:absolute;
+			background: cyan url(page_utils/timg.gif) no-repeat;
+			background-size:cover; 
+		}
+		.right_first_con{
+			border-radius:10px;
+			width: 99%;
+			height: 98%;
+			margin-right:1%;
+			margin-top:1%;
+			margin-bottom:1%;
+			position:absolute;
+			background:#FFCCCC;
+		}
+		.right_first_con div{
+			border-radius: 8px;
+			margin:80px auto;
+			width: 100px;
+			height: 100px;
+		}
+		.right_first_1{
+			background:#A500CC;
+			transition:background-color 3000ms ease,width 6000ms ease-out,height 4000ms ease,border-radius 3000ms ease-out;;
+		}
+		.right_first_1:hover{
+		    background-color:grey;
+		    width: 80%;
+		    border-radius: 37px;
+		  	height: 10%;  
+		}
+		.right_first_2{
+			background: cyan;
+			transition:background-color 6000ms ease,border-radius 3000ms ease-out;
+		}
+		.right_first_2:hover{
+		    background-color:red;
+		    border-radius: 50%;
+		}
+		.right_first_3{
+			background:#FFBB00;
+			transition:background-color 8000ms ease,width 8000ms ease,height 8000ms ease;
+		}		
+		.right_first_3:hover{
+			width: 80%;
+			height: 2%;
+		    background-color:#ffcccc;
+		}
+	</style>
+	<style type="text/css" id='wrong_show'>
+	    html,body,ul,li,iframe,p{
+	    	width:100%;
+	    	height:100%;
+	    	border:0;
+	    	margin:0;
+	    	padding:0;
+	    }
+		#one_wrong{
+			border-radius:10px;
+			margin:1%;
+			display: none;
+			position: absolute;
+			z-index: 1;
+			width: 98%;
+			height: 98%;
+			background:#90ee90;
+		}
+		#one_wrong_contain{
+			padding-top: 5%;
+			overflow: hidden;
+			width: 100%;
+			height: 60%;
+		}
+		#one_wrong_contain div{
+			text-align: center;
+			border-radius: 10px;
+			font-family: 'KaiTi';
+			height: 12%;
+			width: 40%;
+			margin:3% auto;
+			line-height: 45px;
+			font-size: 20px;
+			background: #f5fffa;
+		}
+		#one_wrong_contain div:hover{
+			font-size: 22px;
+		}
+		#one_wrong_input{
+			margin-top: 5%;
+			text-align: center;
+			text-indent: 10px;
+			font-size: 18px;
+			font-family: 'KaiTi';
+			border-radius: 10px;
+			width: 50%;
+			margin-left: 19.5%;
+			height: 5%;
+			background: #ffefd5;
+			float: left;
+		}
+		#one_wrong_input:hover{
+			background: cyan;
+		}
+		#one_wrong_other{
+			margin-top: 5%;
+			font-size: 18px;
+			font-family: 'KaiTi';
+			border-radius: 10px;
+			width: 10%;
+			float: right;
+			margin-right: 19.5%;
+			height: 5%;
+			background: #dcdcdc;
+		}
+		#one_wrong_other:hover{
+			font-size: 20px;
+			background: #a0522d;
+		}
+		#total_wrong{
+			position: absolute;
+			z-index: 1;
+			border-radius:10px;
+			margin:1%;
+			display: none;
+			overflow: hidden;
+			background: #f7dbb6;
+			width: 98%;
+			height: 98%;
+		}
+		#total_wrong_type_tag ,#total_wrong_info_tag{
+			color: black;
+			border-radius: 8px;
+			text-align: center;
+			font-family: 'KaiTi';
+			font-size: 23px;
+			line-height: 32px;
+			margin-top: 3%;
+			margin-left: 10%;
+			margin-bottom: 1%;
+			width:80%;
+			height: 5%;
+			background:#e0ffff;
+		}
+		#total_wrong_type,#total_wrong_info{
+			overflow: auto;
+			background:#f5fffa;
+			font-size: 12px;
+			width:77%;
+			padding: 1.5%;
+			margin-left: 10%;
+			color: black;
+			border-radius: 8px;
+		}
+		#total_wrong_type{
+			height: 12%;
+		}
+		#total_wrong_info{
+			height: 22%;
+		}
+		#total_wrong_one_con{
+			margin-top: 8%;
+			width:80%;
+			margin-left: 10%;
+			overflow: hidden;
+			height: 6%;
+		}
+		#total_wrong_one_con div{
+			float: left;
+			text-align: center;
+			border-radius: 10px;
+			font-family: 'KaiTi';
+			height: 100%;
+			width: 30%;
+			line-height: 40px;
+			font-size: 15px;
+			background: #f5fffa;
+
+		}
+		#total_wrong_one_con div:nth-child(2){
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+		#total_wrong_one_con div:hover{
+			font-size: 16px;
+		}
+		#total_wrong_input_con{
+			overflow: hidden;
+			width: 80%;
+			margin-left: 10%;
+			margin-top: 8%;
+			height: 10%;
+		}
+		#total_wrong_input_name, #total_wrong_input_url{
+			font-family: 'KaiTi';
+			border-radius: 7px;
+			font-size: 14px;
+			text-align: center;
+			background: #f5fffa;
+			float: left;
+			height: 46%;
+			width: 88%;
+		}
+		#total_wrong_input_name{
+			margin-bottom: 1%;
+		}
+		#total_wrong_input_name:hover{
+			background: cyan;
+		}
+		#total_wrong_input_url:hover{
+			background: cyan;
+		}
+		#total_wrong_input_submit{
+			font-family: 'KaiTi';
+			border-radius: 7px;
+			position: relative;
+			top:-43%;
+			float: right;
+			height: 75%;
+			width: 10%;
+			font-size: 14px;
+			background:#E0FFFF; 
+		}
+		#total_wrong_input_submit:hover{
+			font-size: 16px;
+			background: #FF4500;
+		}
+		#clear_wrong_con{
+			overflow: hidden;
+			font-family: 'KaiTi';
+			text-align: center;
+			width: 80%;
+			font-size: 22px;
+			line-height: 40px;
+			margin-left: 10%;
+			margin-top: 4%;
+			height: 7%;
+		}
+		#clear_wrong,#gen_wrong{
+			width: 40%;
+			height: 100%;
+			border-radius: 7px;
+			background: #E0FFFF;
+		}
+		#clear_wrong{
+			margin-left:7%;
+			float: left;
+		}
+		#gen_wrong{
+			margin-right:7%;
+			float: right;
+		}
+		#clear_wrong:hover{
+			background: #ff7f50;
+			font-size: 24px;
+		}
+		#gen_wrong:hover{
+			background: #ff7f50;
+			font-size: 24px;
+		}
+	
+	</style>
+	<script type="text/javascript" src='page_utils/jquery-1.12.4.js'></script>
+	<script type="text/javascript" >
+		$(function(){
+
+			// for page number and page con
+			var	page_num
+			var page_con = []
+
+			// for wrong content type and info con
+			var wrong = []
+			var wrong_detal = {}
+
+			// for iframe first url and other param from select
+			var iframe_base
+			var ir_sitename_base
+			var channel_path_base
+
+			// for left site url hook
+			var my_hook
+
+			// for total wrong page input click index 
+    		var url_flag = 1
+    		var name_index = 0
+
+			// for load site-data to select
+			load_select_data()
+			function load_select_data(){
+				var select_html = ''
+				var $select = $('#input')
+				$select.html('')
+
+	    		var xht = new XMLHttpRequest()
+
+				var url = '/excel/read'
+				xht.open('GET',url,false);
+				xht.send(null);
+
+	    		json_data = JSON.parse(xht.responseText)
+				if (json_data == '0'){
+					alert('请不要打开工作文件夹里的excel ...')
+					return
+				}
+	    		if (json_data == "-1"){	    			
+	    			alert('excel 表头错误 ...')
+	    			return
+	    		}				
+	    		for(var i=0;i<json_data.length;i+=1){
+	    			select_html += '<option>'+json_data[i]+'</option>'
+	    		}
+	    		$select.html(select_html)
+
+			}
+
+
+			// for set start key click interval to 2s
+			var flag = true
+        	setInterval(set_flag_true,2000)
+        	function set_flag_true(){
+        		flag = true
+        	}
+			//for input start 
+	    	for_input()
+			function for_input(){
+
+		        var input_ensure = document.getElementById('input_ensure');
+		        var input = document.getElementById('input');
+		        var iframe = document.getElementById('iframe');
+
+		        input_ensure.onclick= function(){
+		        	
+		    		if(!flag){
+		    			return
+		    		}
+		    		flag = false
+
+		        	//for clear page num
+		        	page_num =false
+		        	// for clear rignt content
+	    			var spans = $('#ul li span')
+	    			spans.each(function(){
+	    				$(this).html('')
+	    			})
+
+		        	// flush page wait for data 
+		        	iframe.src = 'page_utils/for_wait.html'
+					$('.right_first').css("display",'block')
+
+			        //get input value for next use
+		        	input_value = input.value
+		        	if(!input_value){
+		        		alert('请输入采集点的信息...')
+		        	}
+		        	else{
+			        	param_con = input_value.split('^')
+			        	if (param_con.length <4 || param_con[3].indexOf('http')==-1){
+			        		alert('采集点有错误，重新选择...')
+			        	}
+			        	else{
+			        		ir_sitename_base = param_con[1]
+			        		channel_path_base = param_con[2]
+			        		iframe_base = param_con[3]
+			        		my_hook = iframe_base
+
+				        	page_con = []
+				        	wrong = []
+							wrong_detal ={}
+							wrong_show()
+				    		if(get_data()){
+
+				    			// for wrong page input click index flush
+					    		url_flag = 1
+					    		name_index = 0
+
+				    			// for wrong page toggle
+				    			$('#total_wrong_input_name').val('')
+				    			$('#total_wrong_input_url').val('')
+				    			$('#number').css('display','block')
+								$('#one_wrong').css("display","none")
+								$('#total_wrong').css("display","none")
+								$('#one_wrong_back').css("display","none")
+								$('#total_wrong_back').css("display","none")
+								$('#one_wrong_input').val('')
+								$('#total_wrong_input_url').val('') 
+								$('#one_wrong_contain div').css('background','#f5fffa')
+								$('#total_wrong_one_con div').css('background','#f5fffa')
+
+					        	//for top toggle
+						        var $page_num = $('#page_num')
+						        $page_num.css("display","block")
+						        var $close_details = $('#close_details')
+						        $close_details.css("display","none")
+
+						        //for right toggle
+						        var $right_ul = $('#ul')
+						        $right_ul.css("display","block")
+						        var $right_div = $('#right_info')
+						        $right_div.css("display","none")
+
+				        		// hide desktop page
+					        	$('.left_first').remove()
+					        	$('.right_first').css("display",'none')
+
+					        	// show left and right
+					        	setTimeout(show_iframe,50)
+					        	page_num = 1
+					    		show_data()	        		
+				    		}
+			        	}
+			        }
+		    	}
+	    	}
+
+
+	    	// for left-iframe`s a target change and show site-url in top and set interval to 2s
+	    	back_frame_base()
+	        setInterval(change_a,500)
+	    	function change_a(){
+		         iframe = document.getElementById('iframe').contentWindow; 
+		         site_url = document.getElementById('site_url')
+		         if (iframe.location.href.indexOf('127')==-1){
+			         site_url.innerHTML  = iframe.location.href
+		         }
+		         else{
+			         site_url.innerHTML = document.getElementById('iframe').src
+		         }
+
+		         a_list = iframe.document.getElementsByTagName('a')
+		         for(var i=0; i<a_list.length-1; i++){
+		         	a_list[i].target = '_self'
+		         }
+	    	}
+
+
+			// for left-top click left iframe back to iframe_base
+	    	function back_frame_base(){
+	    		var iframe = document.getElementById('iframe');
+	    		$('#history input').mouseenter(function(){
+	    			if (!iframe_base){
+	    				return
+	    			}
+		    		iframe.src = iframe_base;
+	    		})
+	    	}
+
+
+	    	// for left show (change iframe`s src)
+        	function show_iframe(){
+		        var iframe = document.getElementById('iframe');
+        		iframe.src = iframe_base
+        	}
+
+
+	    	// get data from background server
+	    	function get_data(){
+
+	    		var xht = new XMLHttpRequest()
+				send_data = 'ir_sitename_base'+'='+encodeURIComponent(ir_sitename_base)+'&'+
+					'channel_path_base'+'='+encodeURIComponent(channel_path_base)+'&'+
+					'page'+'='+(page_con.length+1).toString()
+				var url = '/get_data'+'?'+send_data
+				xht.open('GET',url,false);
+				xht.send(null);
+
+	    		json_data = JSON.parse(xht.responseText)
+	    		message = json_data['message']
+	    		data = json_data['data']
+
+	    		if (message == "查询成功"){	    			
+	    			if(data.length == 0 && !page_num){
+	    				alert('资源中心无数据 ...')
+	    			}
+	    			page_con.push(data)
+	    			return true
+	    		}
+	    		else{
+	    			alert(message)
+	    		}
+	    	}
+
+
+	    	// prev page 
+	    	prev_page()
+	    	function prev_page(){
+	    		var prev_botton = document.getElementById('prev')
+	    		prev_botton.onclick = function(){
+	    			if (page_con.length==0){
+	    				return
+	    			}
+	    			if (page_num <2) {
+	    				return
+	    			}
+					page_num -= 1
+		    		show_data()	
+	    		}
+	    	}
+
+
+	    	// next page 
+	    	next_page()
+	    	function next_page(){
+	    		var next_botton = document.getElementById('next')
+	    		next_botton.onclick = function(){  			
+	    			if (!$('.hook').html()){
+	    				return
+	    			}
+	    			if (page_con.length==0){
+	    				return
+	    			}
+	    			if (page_num <page_con.length) {
+		    			page_num += 1
+		    			show_data()
+	    			}
+	    			else if(page_num == page_con.length){
+	    				if(page_num == 10){
+	    					return
+	    				}
+	    				if(get_data()){
+		    				page_num +=1
+				    		show_data()
+	    				}
+	    			}
+	    		}
+	    	}
+
+
+	    	// for page change and start show list page in right
+	    	function show_data(){
+
+    			// for clear right list messeage
+    			var spans = $('#ul li span')
+    			spans.each(function(){
+    				$(this).html('')
+    			})
+    			
+	    		var li_con = document.getElementsByTagName('li')
+	    		data = page_con[page_num-1]
+	    		for (var i=0;i<data.length;i++){
+	    			DOCTITLE = data[i]['DOCTITLE']
+	    			DOCPUBTIME = data[i]['DOCPUBTIME']
+	    			IR_SRCNAME = data[i]['IR_SRCNAME']
+	    			PUBURL = data[i]['PUBURL']
+	    			IR_CONTENT = data[i]['IR_CONTENT']
+	    			DOCAUTHOR = data[i]['DOCAUTHOR']
+	    			var spans = li_con[i].getElementsByTagName("span")
+	    			spans[0].innerHTML = '<p>'+i +'</p>'
+	    			spans[1].innerHTML = '<p>'+DOCTITLE +'</p>'
+	    			spans[2].innerHTML = '<p>'+DOCPUBTIME +'</p>'
+	    			spans[3].innerHTML = '<p>'+IR_SRCNAME +'</p>'
+	    			spans[4].innerHTML = '<p>'+PUBURL +'</p>'
+	    			spans[5].innerHTML = '<p>'+IR_CONTENT +'</p>'
+	    			spans[6].innerHTML = '<p>'+DOCAUTHOR +'</p>'
+	    		}
+	    		var number_con = document.getElementById('number')
+	    		number_con.value = page_num
+	    	}
+
+
+	    	// for every title click to show one detal page in right
+	    	show_one_detal()
+	    	function show_one_detal(){
+	    		$DOCTITLE_list = $('#ul');
+	    		$DOCTITLE_list.delegate('li #DOCTITLE', 'click', function(event) {
+	    			if(!$(this).text()){
+	    				return
+	    			}
+
+	    			// parse fields
+			        DOCTITLE = $(this).html()
+			        $(this).find('p').css("color","red")
+			        DOCPUBTIME = $(this).next('span').html()
+			        IR_SRCNAME = $(this).next('span').next('span').text()
+			        IR_SRCNAME = '<p>来源：'+IR_SRCNAME+'</p>'
+			        PUBURL = $(this).next('span').next('span').next('span').text()
+			        PUBURL = '<p>'+PUBURL+'</p><br>'
+			        IR_CONTENT = $(this).next('span').next('span').next('span').next('span').html()
+			        DOCAUTHOR = $(this).next('span').next('span').next('span').next('span').next('span').text()
+			        DOCAUTHOR = '<p>作者：'+DOCAUTHOR+'</p>'
+
+			        // for left iframe change
+			        var iframe = document.getElementById('iframe');
+			        puburl = $(this).next('span').next('span').next('span').text()
+			        iframe.src = 'page_utils/for_wait.html';
+		        	setTimeout(show_iframe_1,50)
+                	function show_iframe_1(){
+				        var iframe = document.getElementById('iframe');
+		        		iframe.src = puburl
+		        	}
+
+			        // top toggle 
+			        var $right_page = $('#page_num')
+			        $right_page.css("display","none")
+			        var $right_back = $('#close_details')
+			        $right_back.css("display","block")
+
+			        //right toggle
+			        var $right_ul = $('#ul')
+			        $right_ul.css("display","none")
+			        var $right_div = $('#right_info')
+			        $right_div.css("display","block")
+			        // for right write 
+			        $right_div.html('<div>'+DOCTITLE+DOCPUBTIME+IR_SRCNAME+DOCAUTHOR+PUBURL+IR_CONTENT+'</div>');
+
+			    });
+	    	}
+
+	    	//for top key close right detail page
+	    	top_toggle()
+	    	function top_toggle(){
+	    		$('#close_details').mouseenter(function(){
+
+	    			//left iframe toggole
+			        var iframe = document.getElementById('iframe');
+			        iframe.src = 'page_utils/for_wait.html';
+		        	setTimeout(show_iframe_1,50)
+                	function show_iframe_1(){
+				        var iframe = document.getElementById('iframe');
+			        	iframe.src = iframe_base;
+			        }
+
+			        // top toggole
+			        var $right_page = $('#page_num')
+			        $right_page.css("display","block")
+			        var $right_back = $('#close_details')
+			        $right_back.css("display","none")
+
+			        //right toggole
+			        var $right_ul = $('#ul')
+			        $right_ul.css("display","block")
+			        var $right_div = $('#right_info')
+			        $right_div.css("display","none")
+	    		})
+	    	}
+
+
+
+
+			//for number click show one wrong page 
+			number_click()
+			function number_click(){
+
+				// get obj
+				var one_wrong_url
+		        var $right_page = $('#page_num')
+		        var $one_wrong = $('#one_wrong')
+
+				// get url and toggle button show one wrong page 
+		        var $DOCTITLE_list = $('#ul');
+	    		$DOCTITLE_list.delegate('li #num', 'mouseenter', function() {
+	    			one_wrong_url = $(this).next().next().next().next().text()
+	    			$('#one_wrong_back').css("display","block")
+			        $right_page.css("display","none")
+			        $one_wrong.css("display","block")
+	    		})
+
+		        // for back button close one wrong page
+		        $('#one_wrong_back').mouseenter(function(){
+		        	$('#one_wrong_back').css("display","none")
+			        $right_page.css("display","block")
+			        $one_wrong.css("display","none")
+		        })
+
+		        // for normal wrong click
+		        var $wrong_list = $('#one_wrong_contain');
+	    		$wrong_list.delegate('#inner_wrong', 'click', function(){
+	    			one_wrong_name = $(this).html()
+	    			if ($(this).css('background').indexOf('140')==-1){
+		    			$(this).css('background','#ff8c00')
+		    			add_wrong_to_mem(one_wrong_name,one_wrong_url)
+		    		}
+		    		else{
+		    			$(this).css('background','#f5fffa')
+		    			remove_wrong_to_mem(one_wrong_name,one_wrong_url)		    			
+		    		}
+	    		})
+
+	    		//for other input wrong
+	    		var $one_wrong_other = $('#one_wrong_other');
+	    		$one_wrong_other.click(function(){
+	    			var one_wrong_input_name = $('#one_wrong_input').val()
+    				if(one_wrong_input_name.length<=1){
+    					return
+    				}
+	    			if(add_wrong_to_mem(one_wrong_input_name,one_wrong_url)){
+	    				alert('添加成功...')
+	    			}
+	    		})
+			}
+
+
+			// add wrong to global [] and {}
+			function add_wrong_to_mem(wrong_name,wrong_url){
+				if(!wrong_name){
+					return
+				}
+				if(wrong.indexOf(wrong_name) ==-1){
+					wrong.push(wrong_name)
+				}
+				if(!wrong_url){
+					wrong_show()
+					return true
+				}
+				wrong_detal[wrong_name] = wrong_url
+				wrong_show()
+				return true
+			}
+
+
+			// remove wrong in global [] and {}
+			function remove_wrong_to_mem(wrong_name,wrong_url){
+
+				index = wrong.indexOf(wrong_name)
+				wrong.splice(index,1)
+				delete wrong_detal[wrong_name]
+				wrong_show()
+				return true
+			}
+
+
+			// wrong show add wrong info to total wrong board
+			function wrong_show(){
+				var wrong_info_text = ''
+				wrong_type_text = wrong.join(',')
+				$('#total_wrong_type').html(wrong_type_text)
+				for(var i=0;i<wrong.length;i++){
+					n =wrong[i]
+					n_n=wrong_detal[n]
+					if(n_n){
+						n_n_n = n+':'+n_n+','
+						wrong_info_text +=n_n_n
+					}
+				}
+				$('#total_wrong_info').html(wrong_info_text)
+			}
+
+
+
+			//for total wrong page show
+			top_wrong_click()
+			function top_wrong_click(){
+
+				var $top_wrong_botton = $('#number')
+				var $right_page = $('#page_num')
+				var $total_wrong = $('#total_wrong')
+				var $total_wrong_back = $('#total_wrong_back')
+
+				// for total wrong page show
+				$top_wrong_botton.click(function(){
+					$('#total_wrong_back').css("display","block")
+					$total_wrong.css('display','block')
+					$right_page.css('display','none')
+				})
+
+
+		        // for total wrong page close
+		        $('#total_wrong_back').click(function(){
+		        	$('#total_wrong_back').css("display","none")
+			        $right_page.css("display","block")
+			        $total_wrong.css("display","none")
+		        })
+
+				// clear wrong in total board
+				$('#clear_wrong').click(function(){
+					wrong = []
+					wrong_detal = {}
+					wrong_show()
+					$('#one_wrong_contain div').css('background','#f5fffa')
+					$('#total_wrong_one_con div').css('background','#f5fffa')
+				})
+
+				// for normal total wrong click
+		        var $wrong_list = $('#total_wrong_one_con');
+	    		$wrong_list.delegate('#total_wrong_one', 'click', function(){
+	    			total_wrong_name = $(this).html()
+	    			if ($(this).css('background').indexOf('140')==-1){
+		    			$(this).css('background','#ff8c00')
+		    			add_wrong_to_mem(total_wrong_name)
+		    		}
+		    		else{
+		    			$(this).css('background','#f5fffa')
+		    			remove_wrong_to_mem(total_wrong_name)		    			
+		    		}
+	    		})
+
+	    		// for name click add name to name input 
+	    		name_con = ['缺近期数据','','漏数据','原网站近期无更新']
+	    		$('#total_wrong_input_name').click(function(){
+	    			if(name_index == 4){
+	    				name_index=0
+	    			}
+	    			name = name_con[name_index]
+	    			name_index +=1
+	    			$('#total_wrong_input_name').val(name)
+	    		})
+
+	    		// for url click add url to url input
+	    		$('#total_wrong_input_url').click(function(){
+	    			if (url_flag==1){
+	    				if($('#site_url').html().split(':')[1] == my_hook.split(':')[1]){
+	    					return
+	    				}
+		    			$('#total_wrong_input_url').val($('#site_url').html())
+	    				url_flag = 0
+	    			}
+	    			else{
+	    				$('#total_wrong_input_url').val('')
+	    				url_flag = 1
+	    			}
+	    		})
+
+	    		// for other input total wrong
+	    		var $total_wrong_input = $('#total_wrong_input_submit');
+	    		$total_wrong_input.click(function(){
+	    			// for url clikc flag
+	    			url_flag = 1
+	    			var total_wrong_input_name = $('#total_wrong_input_name').val()
+	    			var total_wrong_input_url = $('#total_wrong_input_url').val()
+    				if(total_wrong_input_name.length<=1){
+    					return
+	    			}	
+    				if(!total_wrong_input_url){
+		    			if(add_wrong_to_mem(total_wrong_input_name)){
+	    				}
+		    		}
+		    		else{
+		    			if(add_wrong_to_mem(total_wrong_input_name,total_wrong_input_url)){
+	    				}
+	    			$('#total_wrong_input_name').val('')
+	    			$('#total_wrong_input_url').val('')
+		    		}
+	    		})
+
+			}
+
+
+			// for gen wrong send wrong to background server write to excel
+			gen_wrong()
+			function gen_wrong(){
+				$('#gen_wrong').click(function(){
+
+					$('#total_wrong_input_submit').click()
+
+					var ir_sitename = encodeURIComponent(ir_sitename_base)
+					var channel_path = encodeURIComponent(channel_path_base)
+					var state = $('#total_wrong_type').html()
+					var state_info = $('#total_wrong_info').html()
+					if (state.length<=2){
+						state = '正常'
+						state_info = ''
+					}
+		    		var xht = new XMLHttpRequest()
+					send_data = 'ir_sitename'+'='+ir_sitename+'&'
+						+'channel_path'+'='+channel_path+'&'+'state'
+						+'='+state +'&'+'state_info'+'='+state_info
+					var url = '/excel/write'+'?'+send_data
+					xht.open('GET',url,false);
+					xht.send(null);
+
+		    		json_data = JSON.parse(xht.responseText)
+
+		    		if (json_data == "0"){	    			
+		    			alert('请不要打开工作文件夹里的excel ...')
+		    			return
+		    		}
+		    		if (json_data == "-1"){	    			
+		    			alert('excel 表头错误 ...')
+		    			return
+		    		}
+	    			load_select_data()
+	    			$('.right_first').css("display",'block')
+	    			$('#input_ensure').click()
+				})
+			}
+
+
+		});
+	</script>
+
+</head>
+<body class="body">
+	<div class="head">
+		<div id='history'>
+			<input type="submit" value="回到采集点首页" >
+		</div>
+		<div id='page'>
+			<div id='page_num'>
+				<input type="submit" value="上一页" id='prev'>
+				<input type="submit" id='number' value="">
+				<input type="submit" value="下一页" id='next'>
+			</div>
+			<div id='close_details'><input type="submit" value="回到概览页" ></div>
+			<div id='one_wrong_back'><input type="submit" value="回到概览页" ></div>
+			<div id='total_wrong_back'><input type="submit" value="回到概览页" ></div>
+		</div>
+		<div class='input_con'>
+<!-- 			<input class='input' id='input' type="text" autofocus="autofocus" placeholder="请输入采集点信息..." > -->
+			<select class='input' id='input' autofocus="autofocus" placeholder="请输入采集点信息...">
+			</select>
+			<input class='input_ensure' id='input_ensure' type="submit" value="开始" >
+		</div>
+	</div>
+	<div class="left">
+		<div class='left_first'>
+			<div class='left_first_con'></div>
+		</div>		
+		<div id='site_url'></div>
+		<iframe class="if_1" id='iframe' src='' ></iframe>
+	</div>
+	<div class='right'>
+		<div class='right_first'>
+		<div class='right_first_con''>
+			<div class="right_first_1"></div>
+			<div class="right_first_2"></div>
+			<div class="right_first_3"></div>
+		</div>
+		</div>
+		<div id='one_wrong'>
+			<div id='one_wrong_contain'>
+				<div id='inner_wrong'>标题错误</div>
+				<div id='inner_wrong'>来源错误</div>
+				<div id='inner_wrong'>时间错误</div>
+				<div id='inner_wrong'>数据重复</div>
+				<div id='inner_wrong'>作者错误</div>
+				<div id='inner_wrong'>非本栏目数据</div>
+			</div>
+			<input type="text" placeholder="输入自定义错误..." id='one_wrong_input'>
+			<input type="submit" value="添加" id='one_wrong_other'>
+		</div>
+		<div id='total_wrong'>
+			<div id='total_wrong_type_tag'>错误类型</div>
+			<div id='total_wrong_type'></div>
+			<div id='total_wrong_info_tag'>错误详情</div>
+			<div id='total_wrong_info'></div>
+			<div id='total_wrong_one_con'>
+				<div id='total_wrong_one'>资源中心无数据</div>
+				<div id='total_wrong_one'>采集点无法访问</div>
+				<div id='total_wrong_one'>采集点地址更改</div>
+			</div>
+			<div id='total_wrong_input_con'>
+				<input id='total_wrong_input_name' type="text"  placeholder="输入自定义错误...">
+				<input id='total_wrong_input_url' type="text"  placeholder="错误url(选填)...">
+				<input id='total_wrong_input_submit' type="submit">
+			</div>
+			<div id='clear_wrong_con'>
+				<span id='clear_wrong'>清空错误</span>
+				<span id='gen_wrong'>检查完成</span>
+			</div>
+		</div>
+		<div id='right_info'></div>
+		<ul style="list-style:none;" id='ul'>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+			<li id='li'>
+				<span id='num' class='hook'></span>
+				<span id='DOCTITLE'></span>
+				<span id='DOCPUBTIME'></span>
+				<span id='IR_SRCNAME'></span>
+				<span id='PUBURL'></span>
+				<span id='IR_CONTENT'></span>
+				<span id='DOCAUTHOR'></span>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
